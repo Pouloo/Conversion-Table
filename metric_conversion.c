@@ -3,16 +3,19 @@
 #include <stdbool.h>
 
 void continuance();
+int decimal(int diff);
 
 int main()
 {
 
-	int unit1, unit2, cont=1;
-	double value;
-	
-    while(1)
+	int unit1, unit2;
+	double out, value;
+	char metric[7][4] = {"mm", "cm", "dm", "m", "dam", "hm", "km"};
+	//char imperial[4][4] = {"in", "ft", "yd", "mi"};
+    while (1)
 	{
 		printf("1:mm\n2:cm\n3:dm\n4:m\n5:dam\n6:hm\n7:km\n");
+		//printf("\n8:in\n9:ft\n10:yd\n11:mi\n");
 		
 		printf("\nInsert value:\n");
 		scanf("%lf", &value);
@@ -22,259 +25,55 @@ int main()
 
 		printf("\nInsert unit to convert to:\n");
 		scanf("%d", &unit2);
-
-		if(unit1==1 && unit2==2)
+		if (unit1 > 11 || unit1 < 0 ||
+			unit2 > 11 || unit2 < 0)
 		{
-			printf("\n%.3lf mm = %.3lf cm\n", value, value/10);
+			printf("Invalid input");
+			system("sleep 1");
+			system("clear");
+			continue;
 		}
 
-		else if(unit1==1 && unit2==3)
-		{
-			printf("\n%.3lf mm = %.3lf dm\n", value, value/100);
-		}
-		
-		else if(unit1==1 && unit2==4)
-		{
-			printf("\n%.3lf mm = %.3lf m\n", value, value/1000);
-		}
-		
-		else if(unit1==1 && unit2==5)
-		{
-			printf("\n%.3lf mm = %.3lf dam\n", value, value/10000);
-		}
-		
-		else if(unit1==1 && unit2==6)
-		{
-			printf("\n%.3lf mm = %.3lf hm\n", value, value/100000);
-		}
-		
-		else if(unit1==1 && unit2==7)
-		{
-			printf("\n%.3lf mm = %.3lf km\n", value, value/1000000);
-		}
-		
-		else if(unit1==2 && unit2==1)
-		{
-			printf("\n%.3lf cm = %.3lf mm\n", value, value*10);
-		}
+		if (unit1 < unit2)
+			out = value / decimal(unit2 - unit1);
+		else
+			out = value * decimal(unit1 - unit2);;
+		printf("\n%lf%s = %lf%s\n\n", value, metric[unit1-1], out, metric[unit2-1]);
 
-		else if(unit1==2 && unit2==3)
-		{
-			printf("\n%.3lf cm = %.3lf dm\n", value, value/10);
-		}
-		
-		else if(unit1==2 && unit2==4)
-		{
-			printf("\n%.3lf cm = %.3lf m\n", value, value/100);
-		}
-		
-		else if(unit1==2 && unit2==5)
-		{
-			printf("\n%.3lf cm = %.3lf dam\n", value, value/1000);
-		}
-		
-		else if(unit1==2 && unit2==6)
-		{
-			printf("\n%.3lf cm = %.3lf hm\n", value, value/10000);
-		}
-		
-		else if(unit1==2 && unit2==7)
-		{
-			printf("\n%.3lf cm = %.3lf km\n", value, value/100000);
-		}
-		
-		else if(unit1==3 && unit2==1)
-		{
-			printf("\n%.3lf dm = %.3lf mm\n", value, value*100);
-		}
-		
-		else if(unit1==3 && unit2==2)
-		{
-			printf("\n%.3lf dm = %.3lf cm\n", value, value*10);
-		}
-		
-		else if(unit1==3 && unit2==4)
-		{
-			printf("\n%.3lf dm = %.3lf m\n", value, value/10);
-		}
-		
-		else if(unit1==3 && unit2==5)
-		{
-			printf("\n%.3lf dm = %.3lf dam\n", value, value/100);
-		}
-		
-		else if(unit1==3 && unit2==6)
-		{
-			printf("\n%.3lf dm = %.3lf hm\n", value, value/1000);
-		}
-		
-		else if(unit1==3 && unit2==7)
-		{
-			printf("\n%.3lf dm = %.3lf km\n", value, value/10000);
-		}
-		
-		else if(unit1==4 && unit2==1)
-		{
-			printf("\n%.3lf m = %.3lf mm\n", value, value*1000);
-		}
-		
-		else if(unit1==4 && unit2==2)
-		{
-			printf("\n%.3lf m = %.3lf cm\n", value, value*100);
-		}
-		
-		else if(unit1==4 && unit2==3)
-		{
-			printf("\n%.3lf m = %.3lf dm\n", value, value*10);
-		}
-		
-		else if(unit1==4 && unit2==5)
-		{
-			printf("\n%.3lf m = %.3lf dam\n", value, value/10);
-		}
-		
-		else if(unit1==4 && unit2==6)
-		{
-			printf("\n%.3lf m = %.3lf hm\n", value, value/100);
-		}
-		
-		else if(unit1==4 && unit2==7)
-		{
-			printf("\n%.3lf m = %.3lf km\n", value, value/1000);
-		}
-		
-		else if(unit1==5 && unit2==1)
-		{
-			printf("\n%.3lf dam = %.3lf mm\n", value, value*10000);
-		}
-		
-		else if(unit1==5 && unit2==2)
-		{
-			printf("\n%.3lf dam = %.3lf cm\n", value, value*1000);
-		}
-		
-		else if(unit1==5 && unit2==3)
-		{
-			printf("\n%.3lf dam = %.3lf dm\n", value, value*100);
-		}
-		
-		else if(unit1==5 && unit2==4)
-		{
-			printf("\n%.3lf dam = %.3lf m\n", value, value*10);
-		}
-		
-		else if(unit1==5 && unit2==6)
-		{
-			printf("\n%.3lf dam = %.3lf hm\n", value, value/10);
-		}
-		
-		else if(unit1==5 && unit2==7)
-		{
-			printf("\n%.3lf dam = %.3lf km\n", value, value/100);
-		}
-
-		else if(unit1==6 && unit2==1)
-		{
-			printf("\n%.3lf hm = %.3lf mm\n", value, value*100000);
-		}
-		
-		else if(unit1==6 && unit2==2)
-		{
-			printf("\n%.3lf hm = %.3lf cm\n", value, value*10000);
-		}
-		
-		else if(unit1==6 && unit2==3)
-		{
-			printf("\n%.3lf hm = %.3lf dm\n", value, value*1000);
-		}
-		
-		else if(unit1==6 && unit2==4)
-		{
-			printf("\n%.3lf hm = %.3lf m\n", value, value*100);
-		}
-		
-		else if(unit1==6 && unit2==5)
-		{
-			printf("\n%.3lf hm = %.3lf dam\n", value, value*10);
-		}
-		
-		else if(unit1==6 && unit2==7)
-		{
-			printf("\n%.3lf hm = %.3lf km\n", value, value/10);
-		}
-		
-		else if(unit1==7 && unit2==1)
-		{
-			printf("\n%.3lf km = %.3lf mm\n", value, value*1000000);
-		}
-		
-		else if(unit1==7 && unit2==2)
-		{
-			printf("\n%.3lf km = %.3lf cm\n", value, value*100000);
-
-		}
-		
-		else if(unit1==7 && unit2==3)
-		{
-			printf("\n%.3lf km = %.3lf dm\n", value, value*10000);
-		}
-		
-		else if(unit1==7 && unit2==4)
-		{
-			printf("\n%.3lf km = %.3lf m\n", value, value*1000);
-
-		}
-		
-		else if(unit1==7 && unit2==5)
-		{
-			printf("\n%.3lf km = %.3lf dam\n", value, value*100);
-		}
-		
-		else if(unit1==7 && unit2==6)
-		{
-			printf("\n%.3lf km = %.3lf hm\n", value, value*10);
-		}
-		
-		else if(unit1==unit2)
-		{
-			printf("\n%.3lf = %.3lf\n", value, value);
-		}
-		
-		else if(unit1>7 || unit2>7 || unit1<1 || unit2<1)
-		{
-			printf("\nInvalid input\n");
-		}
-
-		continuance(cont);
+		continuance();
 	}
-
-	return 0;
-
 }
 
-void continuance(int input)
+int decimal(int diff)
 {
+	int i = 0;
+	int dec = 1;
+	while (i < diff)
+	{
+		dec *= 10;
+		i++;
+	}
+	return (dec);
+}
+
+void continuance()
+{
+	int input;
 	while(1)
 	{
-		printf("\nProceed with another conversion?\n");
+		printf("Proceed with another conversion?\n");
 		printf("-press 1 to proceed\n");
 		printf("-press 0 to end program\n");
 		scanf("%d", &input);
-		system("cls");
+		system("clear");
 
-		if(input==0)
-		{
-			exit(0);
-		}
-		
-		else if(input==1)
-		{
+		if (input==1)
 			break;
-		}
-		
-		else if(input!=1 && input!=0)
+		else if (input==0)
+			exit(0);
+		else
 		{
-			system("cls");
+			system("clear");
 			printf("Invalid Input\n");
 		}
 	}
